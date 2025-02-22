@@ -108,8 +108,15 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
-  let q = query(collection(db, "habits"), where("email", "==", email));
-  return await getDocs(q);
+  const userEmail = JSON.parse(localStorage.getItem("email"));
+  if (!userEmail) {
+    console.error("Email is null, skipping Firestore query.");
+    return [];
+  }
+
+  let q = query(collection(db, "habits"), where("email", "==", userEmail));
+  let snapshot = await getDocs(q);
+  return snapshot.docs; // Ensure correct format
 }
 
 async function deleteHabit(habitId) {
