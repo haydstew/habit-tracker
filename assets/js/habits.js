@@ -109,6 +109,7 @@ async function addHabitToFirestore(habitText) {
 
 async function getHabitsFromFirestore() {
   const userEmail = JSON.parse(localStorage.getItem("email"));
+  console.log(userEmail);
   if (!userEmail) {
     console.error("Email is null, skipping Firestore query.");
     return [];
