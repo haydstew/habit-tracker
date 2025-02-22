@@ -1,14 +1,3 @@
-const sw = new URL("./service-worker.js", import.meta.url);
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register(sw.href, {
-      scope: "/habit-tracker/",
-    })
-    .then(() => console.log("Service Worker Registered for scope:", sw.href))
-    .catch((err) => console.error("Service Worker Error:", err));
-}
-
 async function registerBiometric() {
   const userEmail = prompt("Enter your email for registration:");
   if (!userEmail) {
