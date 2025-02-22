@@ -13,7 +13,8 @@ service cloud.firestore {
       allow create: if request.resource.data.email != null
                     && request.resource.data.authenticated == true;
 
-      allow read, update, delete: if resource.data.email == request.query.email
+      allow read, update, delete: if request.resource != null 
+                                  && request.resource.data.email == resource.data.email
                                   && resource.data.authenticated == true;
     }
   }
