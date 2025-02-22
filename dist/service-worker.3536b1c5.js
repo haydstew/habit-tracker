@@ -1,0 +1,2 @@
+const s=["./","../html/index.html","../html/habits.html","../css/style.css","../js/firebase.js","../js/signIn.js","../js/habits.js","../../manifest.json"];self.addEventListener("install",e=>{e.waitUntil(caches.open("habit-tracker-cache-v1").then(e=>e.addAll(s)))}),self.addEventListener("fetch",s=>{s.respondWith(caches.match(s.request).then(e=>e||fetch(s.request)))});
+//# sourceMappingURL=service-worker.3536b1c5.js.map
