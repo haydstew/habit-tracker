@@ -114,14 +114,19 @@ async function getHabitsFromFirestore() {
     return [];
   }
 
-  let q = query(collection(db, "habits"), where("email", "==", userEmail));
-  let snapshot = await getDocs(q);
+  try {
+    let q = query(collection(db, "habits"), where("email", "==", userEmail));
+    let snapshot = await getDocs(q);
 
-  if (snapshot.empty) {
-    console.warn("No habits found for user:", userEmail);
+    if (snapshot.empty) {
+      console.warn("No habits found for user:", userEmail);
+    }
+
+    return snapshot.docs; // Ensure the correct return format
+  } catch (error) {
+    console.error("Error fetching habits:", error);
+    return [];
   }
-
-  return snapshot.docs; // Ensure the correct return format
 }
 
 async function deleteHabit(habitId) {
