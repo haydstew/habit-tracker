@@ -11,7 +11,6 @@ import {
   where,
 } from "firebase/firestore";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { getFunctions, httpsCallable } from "firebase/functions";
 
 const habitInput = document.getElementById("habitInput");
 const addHabitBtn = document.getElementById("addHabitBtn");
@@ -24,7 +23,6 @@ let chatHistoryCleared = false;
 
 const signOutBtn = document.getElementById("signOutBtn");
 const email = JSON.parse(localStorage.getItem("email"));
-const functions = getFunctions();
 
 let apiKey;
 let genAI;
@@ -42,18 +40,7 @@ async function verifyBiometric() {
     alert("Biometric authentication required.");
     return false;
   }
-  try {
-    const verifyBiometricFunction = httpsCallable(functions, "verifyBiometric");
-    const result = await verifyBiometricFunction({
-      userEmail: email,
-      credentialId: authenticatedUser.id,
-    });
-    return result.data.success;
-  } catch (error) {
-    console.error("Biometric verification failed:", error);
-    alert("Biometric authentication failed.");
-    return false;
-  }
+  return true;
 }
 
 async function getApiKey() {
