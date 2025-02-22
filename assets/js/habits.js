@@ -118,12 +118,15 @@ async function getHabitsFromFirestore() {
   try {
     let q = query(collection(db, "habits"), where("email", "==", userEmail));
     let snapshot = await getDocs(q);
+    console.log(snapshot);
 
     if (snapshot.empty) {
       console.warn("No habits found for user:", userEmail);
     }
 
-    return snapshot.docs; // Ensure the correct return format
+    console.log(snapshot.docs);
+
+    return snapshot.docs;
   } catch (error) {
     console.error("Error fetching habits:", error);
     return [];
