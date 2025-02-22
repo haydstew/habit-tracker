@@ -17,7 +17,7 @@ async function registerBiometric() {
   }
 
   const publicKey = {
-    challenge: new Uint8Array(32), // Random challenge
+    challenge: new Uint8Array(32),
     rp: { name: "Habit Tracker" },
     user: {
       id: new TextEncoder().encode(userEmail),
@@ -33,8 +33,7 @@ async function registerBiometric() {
   try {
     const credential = await navigator.credentials.create({ publicKey });
 
-    // Store credentials securely in sessionStorage
-    sessionStorage.setItem(
+    localStorage.setItem(
       "biometricKey",
       JSON.stringify({
         id: credential.id,
@@ -51,14 +50,14 @@ async function registerBiometric() {
 }
 
 async function authenticateBiometric() {
-  const storedCredentials = JSON.parse(sessionStorage.getItem("biometricKey"));
+  const storedCredentials = JSON.parse(localStorage.getItem("biometricKey"));
   if (!storedCredentials) {
     alert("No biometric data found. Please register first.");
     return;
   }
 
   const publicKey = {
-    challenge: new Uint8Array(32), // Random challenge
+    challenge: new Uint8Array(32),
     allowCredentials: [
       {
         id: new TextEncoder().encode(storedCredentials.id),
@@ -72,18 +71,16 @@ async function authenticateBiometric() {
   try {
     const assertion = await navigator.credentials.get({ publicKey });
 
-    // Store authenticated session securely
-    sessionStorage.setItem("authenticatedUser", JSON.stringify(assertion));
+    localStorage.setItem("authenticatedUser", JSON.stringify(assertion));
 
     alert("Authentication successful!");
-    window.location.href = "habits.html"; // Redirect to habits page
+    window.location.href = "habits.html";
   } catch (error) {
     console.error("Authentication failed:", error);
     alert("Authentication failed. Try again.");
   }
 }
 
-// Event listeners for buttons
 document
   .getElementById("registerBiometric")
   .addEventListener("click", registerBiometric);
