@@ -36,7 +36,7 @@ if (!email) {
 
 async function verifyBiometric() {
   const authenticatedUser = JSON.parse(
-    sessionStorage.getItem("authenticatedUser")
+    localStorage.getItem("authenticatedUser")
   );
   if (!authenticatedUser) {
     alert("Biometric authentication required.");
@@ -104,7 +104,7 @@ async function renderHabits() {
 
 async function addHabitToFirestore(habitText) {
   const authenticatedUser = JSON.parse(
-    sessionStorage.getItem("authenticatedUser")
+    localStorage.getItem("authenticatedUser")
   );
   if (!authenticatedUser) {
     alert("Biometric authentication required.");
@@ -134,12 +134,10 @@ function createLiHabit(id, text, completed = false) {
   habitItem.id = id;
   habitItem.classList.add("habit-item");
 
-  // Create a container for the habit text
   let habitText = document.createElement("span");
   habitText.textContent = text;
   habitText.className = completed ? "completed" : "habit-text";
 
-  // Create a container for the buttons
   let buttonContainer = document.createElement("div");
   buttonContainer.classList.add("habit-buttons");
 
@@ -165,7 +163,7 @@ function createLiHabit(id, text, completed = false) {
 
       if (confirmIncomplete) {
         await toggleHabitCompletion(id, !completed);
-        renderHabits(); // Refresh habit list
+        renderHabits();
       }
     }
   });
@@ -174,12 +172,10 @@ function createLiHabit(id, text, completed = false) {
   deleteBtn.textContent = "Delete Habit";
   deleteBtn.className = "delete-btn";
   deleteBtn.addEventListener("click", async () => {
-    // Show a confirmation prompt
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this habit?"
     );
 
-    // If the user confirms, delete the habit
     if (confirmDelete) {
       await deleteHabit(id);
       renderHabits();
@@ -189,7 +185,6 @@ function createLiHabit(id, text, completed = false) {
   buttonContainer.appendChild(completeBtn);
   buttonContainer.appendChild(deleteBtn);
 
-  // Append elements in the correct order
   habitItem.appendChild(habitText);
   habitItem.appendChild(buttonContainer);
   habitList.appendChild(habitItem);
