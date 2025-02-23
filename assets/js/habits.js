@@ -10,7 +10,6 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { signOut } from "firebase/auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const habitInput = document.getElementById("habitInput");
@@ -239,13 +238,8 @@ signOutBtn.addEventListener("click", async function () {
   );
 
   if (signOutConfirmation) {
-    try {
-      await signOut(auth);
-      localStorage.removeItem("authenticatedUser");
-      localStorage.removeItem("email");
-      window.location.href = "index.html";
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
+    localStorage.removeItem("authenticatedUser");
+    localStorage.removeItem("email");
+    window.location.href = "index.html";
   }
 });
