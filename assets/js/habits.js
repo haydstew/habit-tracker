@@ -75,7 +75,6 @@ function appendMessage(message) {
 }
 
 async function addHabit(habit) {
-  if (!(await verifyBiometric())) return;
   let habitId = await addHabitToFirestore(habit);
   habitInput.value = "";
   createLiHabit(habitId, habit);
@@ -103,12 +102,6 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
-  const user = auth.currentUser;
-  if (!user) {
-    alert("User not authenticated.");
-    return;
-  }
-
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
     email: user.email,
@@ -119,7 +112,7 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
-  let q = query(collection(db, "todos"), where("email", "==", email));
+  let q = query(collection(db, "habits"), where("email", "==", email));
   return await getDocs(q);
 }
 
