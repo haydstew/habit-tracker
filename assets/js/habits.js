@@ -82,11 +82,9 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
-  const userEmail = auth.currentUser?.email;
-
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
-    email: userEmail,
+    email: email,
     completed: false,
   });
 
@@ -94,9 +92,7 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
-  const userEmail = auth.currentUser?.email;
-
-  let q = query(collection(db, "habits"), where("email", "==", userEmail));
+  let q = query(collection(db, "habits"), where("email", "==", email));
   return await getDocs(q);
 }
 
@@ -250,6 +246,7 @@ signOutBtn.addEventListener("click", async function () {
     try {
       await signOut(auth);
       localStorage.removeItem("authenticatedUser");
+      localStorage.removeItem("email");
       window.location.href = "index.html";
     } catch (error) {
       console.error("Error signing out:", error);
