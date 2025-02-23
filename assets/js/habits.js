@@ -76,7 +76,7 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
-  const email = JSON.parse(localStorage.getItem("email"));
+  const email = auth.currentUser.email;
 
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
@@ -88,7 +88,7 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
-  const email = JSON.parse(localStorage.getItem("email"));
+  const email = auth.currentUser.email;
 
   let q = query(collection(db, "habits"), where("email", "==", email));
   return await getDocs(q);
