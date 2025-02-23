@@ -1,4 +1,4 @@
-import { db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
 import {
   doc,
   deleteDoc,
@@ -10,6 +10,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const habitInput = document.getElementById("habitInput");
@@ -33,6 +34,11 @@ if (!email) {
 }
 
 async function verifyBiometric() {
+  if (!auth.currentUser) {
+    alert("You must sign in first.");
+    return false;
+  }
+
   const authenticatedUser = JSON.parse(
     localStorage.getItem("authenticatedUser")
   );
@@ -90,41 +96,36 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
-  const authenticatedUser = JSON.parse(
-    localStorage.getItem("authenticatedUser")
-  );
-  if (!authenticatedUser) {
-    alert("Biometric authentication required.");
+  const user = auth.currentUser;
+  if (!user) {
+    alert("User not authenticated.");
     return;
   }
 
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
-    email: email,
+    email: user.email,
     completed: false,
     authenticated: true,
   });
+
   return habit.id;
 }
 
 async function getHabitsFromFirestore() {
-  const userEmail = JSON.parse(localStorage.getItem("email"));
-  console.log(userEmail);
-  if (!userEmail) {
-    console.error("Email is null, skipping Firestore query.");
+  const user = auth.currentUser;
+  if (!user) {
+    console.error("User is not authenticated.");
     return [];
   }
 
   try {
-    let q = query(collection(db, "habits"), where("email", "==", userEmail));
+    let q = query(collection(db, "habits"), where("email", "==", user.email));
     let snapshot = await getDocs(q);
-    console.log(snapshot);
 
     if (snapshot.empty) {
-      console.warn("No habits found for user:", userEmail);
+      console.warn("No habits found for user:", user.email);
     }
-
-    console.log(snapshot.docs);
 
     return snapshot.docs;
   } catch (error) {
@@ -274,7 +275,12 @@ window.addEventListener("error", function (event) {
   console.error("Error occurred: ", event.message);
 });
 
-signOutBtn.addEventListener("click", function (event) {
-  localStorage.removeItem("email");
-  window.location.href = "index.html";
+signOutBtn.addEventListener("click", async function () {
+  try {
+    await signOut(auth);
+    localStorage.removeItem("authenticatedUser"); // Remove biometric session
+    window.location.href = "index.html";
+  } catch (error) {
+    console.error("Error signing out:", error);
+  }
 });
