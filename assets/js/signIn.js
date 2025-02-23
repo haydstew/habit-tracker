@@ -4,11 +4,13 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-// Biometric Registration
-async function registerBiometric() {
-  const userEmail = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+const userEmail = document.getElementById("email").value;
+const password = document.getElementById("password").value;
 
+const registerBtn = document.getElementById("register");
+const signInBtn = document.getElementById("signIn");
+
+async function registerBiometric() {
   if (!userEmail || !password) {
     alert("Email and password are required.");
     return;
@@ -16,7 +18,6 @@ async function registerBiometric() {
 
   try {
     await createUserWithEmailAndPassword(auth, userEmail, password);
-    alert("Account created. Now setting up biometrics...");
 
     const publicKey = {
       challenge: new Uint8Array(32),
@@ -53,7 +54,6 @@ async function registerBiometric() {
   }
 }
 
-// Convert Base64 to Uint8Array
 function base64urlToUint8Array(base64url) {
   const padding = "=".repeat((4 - (base64url.length % 4)) % 4);
   const base64 = (base64url + padding).replace(/-/g, "+").replace(/_/g, "/");
@@ -65,8 +65,12 @@ function base64urlToUint8Array(base64url) {
   return outputArray;
 }
 
-// Biometric + Firebase Sign In
 async function authenticateBiometric() {
+  if (!userEmail || !password) {
+    alert("Email and password are required.");
+    return;
+  }
+
   const storedCredentials = JSON.parse(localStorage.getItem("biometricKey"));
   if (!storedCredentials) {
     alert("No biometric data found. Please register first.");
@@ -74,7 +78,6 @@ async function authenticateBiometric() {
   }
 
   try {
-    // Biometric Authentication FIRST
     const publicKey = {
       challenge: new Uint8Array(32),
       allowCredentials: [
@@ -89,18 +92,7 @@ async function authenticateBiometric() {
 
     await navigator.credentials.get({ publicKey });
 
-    // Now, log in with Firebase
-    const userPassword = document.getElementById("password").value;
-    if (!userPassword) {
-      alert("Password is required.");
-      return;
-    }
-
-    await signInWithEmailAndPassword(
-      auth,
-      storedCredentials.email,
-      userPassword
-    );
+    await signInWithEmailAndPassword(auth, storedCredentials.email, password);
 
     localStorage.setItem("authenticatedUser", JSON.stringify(true));
     alert("Authentication successful!");
@@ -111,10 +103,5 @@ async function authenticateBiometric() {
   }
 }
 
-// Event Listeners
-document
-  .getElementById("registerBiometric")
-  .addEventListener("click", registerBiometric);
-document
-  .getElementById("signIn")
-  .addEventListener("click", authenticateBiometric);
+registerBtn.addEventListener("click", registerBiometric);
+signInBtn.addEventListener("click", authenticateBiometric);
