@@ -1,31 +1,30 @@
+/* General Body Styles */
 body {
   font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
-  text-align: center;
   background-color: #f8f9fa;
   color: #1c1c1e;
 }
 
+/* Header Styles */
 header {
   background-color: #2ecc71;
   color: white;
   padding: 15px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   position: relative;
 }
 
 header h1 {
-  flex-grow: 1;
   margin: 0;
-  text-align: center;
 }
 
-/* Centered container for the sign-in form */
+/* Auth Form Styles */
 .auth-form {
   margin: 50px auto;
   max-width: 400px;
@@ -33,11 +32,9 @@ header h1 {
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: "Poppins", sans-serif;
   text-align: center;
 }
 
-/* Labels for form fields */
 .auth-form label {
   display: block;
   font-size: 14px;
@@ -47,7 +44,6 @@ header h1 {
   color: #333;
 }
 
-/* Input fields for email and password */
 .auth-form input {
   width: 100%;
   padding: 12px;
@@ -59,18 +55,16 @@ header h1 {
   box-sizing: border-box;
 }
 
-/* Focus effect for input fields */
 .auth-form input:focus {
   outline: none;
   border-color: #2980b9;
   box-shadow: 0px 0px 5px rgba(41, 128, 185, 0.5);
 }
 
-/* Sign-in and register buttons */
+/* Button Styles */
 .auth-form button {
   width: 100%;
   padding: 12px;
-  margin-top: 10px;
   background-color: #2ecc71;
   color: white;
   border: none;
@@ -82,7 +76,6 @@ header h1 {
   transition: background 0.3s ease-in-out;
 }
 
-/* Hover and active effects */
 .auth-form button:hover {
   background-color: #27ae60;
 }
@@ -91,7 +84,21 @@ header h1 {
   background-color: #1e8449;
 }
 
-/* Responsive adjustments */
+/* Toggle Form Link Styles */
+#toggleLink {
+  margin-top: 15px;
+}
+
+#toggleLink a {
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+#toggleLink a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
 @media (max-width: 480px) {
   .auth-form {
     width: 90%;
@@ -99,34 +106,7 @@ header h1 {
   }
 }
 
-#signIn,
-#signOutBtn,
-button {
-  padding: 10px 15px;
-  background-color: #f39c12;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-}
-
-#signOutBtn {
-  background-color: #ff4b5c;
-  position: absolute;
-  right: 20px;
-}
-
-#signOutBtn:hover {
-  background-color: #d43f4a;
-}
-
-button:hover,
-#signIn:hover {
-  background-color: #e67e22;
-}
-
+/* Habit Tracker Page Styles */
 .habit-form,
 .habit-list {
   margin: 20px auto;
@@ -147,6 +127,42 @@ input[type="text"] {
   font-family: "Inter", sans-serif;
 }
 
+button {
+  padding: 10px 15px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+button:active {
+  background-color: #1e8449;
+}
+
+/* Sign Out Button */
+#signOutBtn {
+  background-color: #ff4b5c;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  padding: 10px 15px;
+  font-weight: 600;
+}
+
+#signOutBtn:hover {
+  background-color: #d43f4a;
+}
+
+/* Habit List Styles */
 ul {
   list-style: none;
   padding: 0;
@@ -160,7 +176,6 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: "Inter", sans-serif;
 }
 
 .habit-text {
@@ -200,16 +215,7 @@ ul {
   background-color: #d43f4a;
 }
 
-.completed {
-  text-decoration: line-through;
-  color: gray;
-  margin-bottom: 10px;
-}
-
-h3 {
-  margin: 0 0 5px;
-}
-
+/* Chatbot Styles */
 #chatbot-container {
   width: 300px;
   border: 1px solid #ccc;

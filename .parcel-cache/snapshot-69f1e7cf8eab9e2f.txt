@@ -1,4 +1,4 @@
-24000
+24004
 69C:\GitHub\habit-tracker\node_modules\firebase\compat\storage\dist\app133841197265088026 1
 41C:\GitHub\habit-tracker\node_modules\.bin133841197290285930 1
 55C:\GitHub\habit-tracker\node_modules\yargs\browser.d.ts133841197216335138 0
@@ -109,10 +109,10 @@
 86C:\GitHub\habit-tracker\node_modules\firebase\compat\storage\dist\esm\compat\functions133841197265951723 1
 79C:\GitHub\habit-tracker\node_modules\firebase\remote-config\dist\app\index.d.ts133841197281006053 0
 79C:\GitHub\habit-tracker\node_modules\@firebase\auth\dist\index.webworker.js.map133841197222000887 0
-28C:\GitHub\habit-tracker\dist133848170031637899 1
+28C:\GitHub\habit-tracker\dist133848191568290509 1
 61C:\GitHub\habit-tracker\node_modules\protobufjs\tsconfig.json133841197217190802 0
 93C:\GitHub\habit-tracker\node_modules\@opentelemetry\api\build\esnext\trace\trace_flags.js.map133841197231208366 0
-28C:\GitHub\habit-tracker\docs133848170070519375 1
+28C:\GitHub\habit-tracker\docs133848191521171719 1
 75C:\GitHub\habit-tracker\node_modules\firebase\remote-config\dist\esm\compat133841197288716588 1
 87C:\GitHub\habit-tracker\node_modules\@opentelemetry\api\build\src\metrics\Metric.js.map133841197228740357 0
 50C:\GitHub\habit-tracker\node_modules\node-releases133841197197751297 1
@@ -1410,7 +1410,7 @@
 58C:\GitHub\habit-tracker\node_modules\protobufjs\index.d.ts133841197220495761 0
 90C:\GitHub\habit-tracker\node_modules\@firebase\auth\dist\cordova\src\platform_browser\util133841197280137393 1
 89C:\GitHub\habit-tracker\node_modules\firebase\compat\dist\compat\remote-config\index.d.ts133841197253626960 0
-46C:\GitHub\habit-tracker\dist\index.ba1b373a.js133848168466043636 0
+46C:\GitHub\habit-tracker\dist\index.ba1b373a.js133848191561804018 0
 48C:\GitHub\habit-tracker\node_modules\glob-parent133841197195752076 1
 44C:\GitHub\habit-tracker\node_modules\globals133841197198421309 1
 54C:\GitHub\habit-tracker\node_modules\side-channel-list133841197202690625 1
@@ -2046,6 +2046,7 @@
 90C:\GitHub\habit-tracker\node_modules\posthtml\node_modules\domutils\lib\traversal.d.ts.map133841197205743190 0
 74C:\GitHub\habit-tracker\node_modules\yargs\build\lib\utils\which-module.js133841197209498469 0
 62C:\GitHub\habit-tracker\node_modules\util-deprecate\History.md133841197197150462 0
+50C:\GitHub\habit-tracker\docs\index.eba35368.js.map133848191521152181 0
 101C:\GitHub\habit-tracker\node_modules\stream-browserify\node_modules\readable-stream\errors-browser.js133841197202940629 0
 88C:\GitHub\habit-tracker\node_modules\htmlnano\lib\modules\deduplicateAttributeValues.cjs133841197199785107 0
 51C:\GitHub\habit-tracker\node_modules\hasown\.github133841197201140320 1
@@ -2213,7 +2214,7 @@
 110C:\GitHub\habit-tracker\node_modules\@firebase\firestore\node_modules\@grpc\grpc-js\build\src\resolver-ip.d.ts133841197229552775 0
 85C:\GitHub\habit-tracker\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb133841197222566058 1
 61C:\GitHub\habit-tracker\node_modules\eslint\lib\rules\yoda.js133841197231558369 0
-43C:\GitHub\habit-tracker\assets\js\signIn.js133848168378734696 0
+43C:\GitHub\habit-tracker\assets\js\signIn.js133848190066931005 0
 107C:\GitHub\habit-tracker\node_modules\@firebase\firestore\dist\packages\firestore\src\remote\serializer.d.ts133841197247479381 0
 75C:\GitHub\habit-tracker\node_modules\uri-js\dist\esnext\schemes\urn-uuid.js133841197203721928 0
 57C:\GitHub\habit-tracker\node_modules\call-bound\.eslintrc133841197190540269 0
@@ -6374,7 +6375,7 @@
 93C:\GitHub\habit-tracker\node_modules\@firebase\storage\dist\node-esm\src\platform\base64.d.ts133841197214749865 0
 81C:\GitHub\habit-tracker\node_modules\path-browserify\test\test-path-isabsolute.js133841197199141429 0
 83C:\GitHub\habit-tracker\node_modules\path-browserify\test\test-path-parse-format.js133841197200960270 0
-40C:\GitHub\habit-tracker\dist\habits.html133848168467216377 0
+40C:\GitHub\habit-tracker\dist\habits.html133848191563458161 0
 79C:\GitHub\habit-tracker\node_modules\path-browserify\test\test-path-relative.js133841197201775417 0
 85C:\GitHub\habit-tracker\node_modules\firebase\remote-config\dist\functions\index.d.ts133841197282160810 0
 73C:\GitHub\habit-tracker\node_modules\eslint\lib\rules\no-return-assign.js133841197227370860 0
@@ -7661,6 +7662,7 @@
 81C:\GitHub\habit-tracker\node_modules\eslint\lib\rules\no-useless-backreference.js133841197228460357 0
 60C:\GitHub\habit-tracker\node_modules\lmdb\dist\index.cjs.map133841197222080919 0
 70C:\GitHub\habit-tracker\node_modules\jose\dist\node\esm\util\errors.js133841197221910861 0
+48C:\GitHub\habit-tracker\docs\habits.326c60c0.css133848191520672933 0
 79C:\GitHub\habit-tracker\node_modules\@firebase\app\dist\esm\app\test\setup.d.ts133841197215521945 0
 57C:\GitHub\habit-tracker\node_modules\lmdb\dependencies\v8133841197220906076 1
 81C:\GitHub\habit-tracker\node_modules\lmdb\dependencies\v8\v8-fast-api-calls-v16.h133841197220855751 0
@@ -12016,7 +12018,7 @@
 122C:\GitHub\habit-tracker\node_modules\@firebase\firestore\dist\lite\firestore\src\index\directional_index_byte_encoder.d.ts133841197235206883 0
 91C:\GitHub\habit-tracker\node_modules\firebase\compat\dist\esm\auth\web-extension\index.d.ts133841197253777186 0
 78C:\GitHub\habit-tracker\node_modules\firebase\firestore\lite\dist\esm\vertexai133841197272646080 1
-49C:\GitHub\habit-tracker\dist\favicon.33a96e48.ico133848168465847542 0
+49C:\GitHub\habit-tracker\dist\favicon.33a96e48.ico133848191561415433 0
 89C:\GitHub\habit-tracker\node_modules\firebase\firestore\lite\dist\esm\vertexai\index.d.ts133841197272646080 0
 94C:\GitHub\habit-tracker\node_modules\firebase\firestore\lite\dist\esm\remote-config\index.d.ts133841197272606071 0
 82C:\GitHub\habit-tracker\node_modules\firebase\firestore\lite\dist\esm\messaging\sw133841197272566079 1
@@ -16028,6 +16030,7 @@
 59C:\GitHub\habit-tracker\node_modules\detect-libc\.npmignore133841197191439817 0
 52C:\GitHub\habit-tracker\node_modules\detect-libc\bin133841197196489999 1
 77C:\GitHub\habit-tracker\node_modules\@swc\helpers\esm\_array_without_holes.js133841197219922755 0
+46C:\GitHub\habit-tracker\docs\index.eba35368.js133848191520679738 0
 93C:\GitHub\habit-tracker\node_modules\@firebase\firestore\dist\packages\firestore\src\platform133841197250601938 1
 52C:\GitHub\habit-tracker\node_modules\detect-libc\lib133841197197800946 1
 100C:\GitHub\habit-tracker\node_modules\@firebase\firestore\dist\packages\firestore\src\api\filter.d.ts133841197236989242 0
@@ -23959,6 +23962,7 @@
 52C:\GitHub\habit-tracker\docs\habits.0a3f2965.css.map133848170070435474 0
 47C:\GitHub\habit-tracker\docs\habits.17b03ed7.js133847234004953326 0
 51C:\GitHub\habit-tracker\docs\habits.26ea5963.js.map133847208891537622 0
+52C:\GitHub\habit-tracker\docs\habits.326c60c0.css.map133848191521152181 0
 47C:\GitHub\habit-tracker\docs\habits.43f10961.js133848147705101532 0
 51C:\GitHub\habit-tracker\docs\habits.43f10961.js.map133848147705144347 0
 47C:\GitHub\habit-tracker\docs\habits.448cb873.js133848149985123442 0
@@ -23971,7 +23975,7 @@
 51C:\GitHub\habit-tracker\docs\habits.ac0c2b40.js.map133847230584698515 0
 51C:\GitHub\habit-tracker\docs\habits.c77c566f.js.map133848170070475749 0
 51C:\GitHub\habit-tracker\docs\habits.f6a1a89a.js.map133847248024641455 0
-40C:\GitHub\habit-tracker\docs\habits.html133848170069807148 0
+40C:\GitHub\habit-tracker\docs\habits.html133848191520666560 0
 50C:\GitHub\habit-tracker\docs\index.16c54259.js.map133848164483849924 0
 46C:\GitHub\habit-tracker\docs\index.6fbba409.js133848162575519479 0
 50C:\GitHub\habit-tracker\docs\index.6fbba409.js.map133848162575925326 0
@@ -23980,22 +23984,22 @@
 46C:\GitHub\habit-tracker\docs\index.bf24d4be.js133848149985118290 0
 50C:\GitHub\habit-tracker\docs\index.bf24d4be.js.map133848149985640392 0
 46C:\GitHub\habit-tracker\docs\index.f022e908.js133847248024382799 0
-39C:\GitHub\habit-tracker\docs\index.html133848170069807148 0
+39C:\GitHub\habit-tracker\docs\index.html133848191520672933 0
 59C:\GitHub\habit-tracker\docs\service-worker.57b936f8.js.map133847205434804487 0
-47C:\GitHub\habit-tracker\dist\habits.14add92d.js133848170031603525 0
-51C:\GitHub\habit-tracker\dist\habits.14add92d.js.map133848170031631517 0
-48C:\GitHub\habit-tracker\dist\habits.bbacb2a8.css133848168466273202 0
-52C:\GitHub\habit-tracker\dist\habits.bbacb2a8.css.map133848168466293320 0
-47C:\GitHub\habit-tracker\dist\habits.ed444992.js133848168472135861 0
-51C:\GitHub\habit-tracker\dist\habits.ed444992.js.map133848168472256848 0
-50C:\GitHub\habit-tracker\dist\index.ba1b373a.js.map133848168466065291 0
-39C:\GitHub\habit-tracker\dist\index.html133848168466537421 0
+47C:\GitHub\habit-tracker\dist\habits.14add92d.js133848191562069407 0
+51C:\GitHub\habit-tracker\dist\habits.14add92d.js.map133848191562107329 0
+48C:\GitHub\habit-tracker\dist\habits.bbacb2a8.css133848191562199185 0
+52C:\GitHub\habit-tracker\dist\habits.bbacb2a8.css.map133848191562226254 0
+47C:\GitHub\habit-tracker\dist\habits.ed444992.js133848191568115329 0
+51C:\GitHub\habit-tracker\dist\habits.ed444992.js.map133848191568275412 0
+50C:\GitHub\habit-tracker\dist\index.ba1b373a.js.map133848191561840777 0
+39C:\GitHub\habit-tracker\dist\index.html133848191562517326 0
 34C:\GitHub\habit-tracker\assets\css133841196799106286 1
 35C:\GitHub\habit-tracker\assets\html133842838448249457 1
 36C:\GitHub\habit-tracker\assets\icons133842838350160549 1
 45C:\GitHub\habit-tracker\assets\js\firebase.js133841207678143483 0
 43C:\GitHub\habit-tracker\assets\js\habits.js133848169964675108 0
 47C:\GitHub\habit-tracker\assets\html\habits.html133848118404691037 0
-46C:\GitHub\habit-tracker\assets\html\index.html133848158521900912 0
-44C:\GitHub\habit-tracker\assets\css\style.css133848122043022912 0
+46C:\GitHub\habit-tracker\assets\html\index.html133848189439663725 0
+44C:\GitHub\habit-tracker\assets\css\style.css133848191143881569 0
 41C:\GitHub\habit-tracker\.github\workflows133841196799036322 1
