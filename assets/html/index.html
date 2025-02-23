@@ -21,11 +21,8 @@
     <main>
       <form class="auth-form">
         <h2 id="formTitle">Sign In</h2>
-
-        <!-- Email and Password Fields -->
         <label for="email">Email:</label>
-        <input type="email" id="email" required />
-
+        <input type="email" id="email" autocomplete="username" required />
         <label for="password">Password:</label>
         <input
           type="password"
@@ -33,13 +30,9 @@
           autocomplete="current-password"
           required
         />
-
-        <!-- Toggle between Sign In and Register -->
         <div id="formButtons">
           <button type="button" id="actionButton">Sign In</button>
         </div>
-
-        <!-- Link to switch forms -->
         <p id="toggleLink">
           Don't have an account?
           <a href="#" class="toggle-form-link">Register here</a>
