@@ -238,7 +238,9 @@ window.addEventListener("error", function (event) {
 });
 
 signOutBtn.addEventListener("click", async function () {
-  const signOutConfirmation = prompt("Are you sure you wish to sign out?");
+  const signOutConfirmation = window.confirm(
+    "Are you sure you wish to sign out?"
+  );
 
   if (signOutConfirmation) {
     try {
