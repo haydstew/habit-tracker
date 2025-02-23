@@ -22,7 +22,6 @@ const chatHistory = document.getElementById("chat-history");
 let chatHistoryCleared = false;
 
 const signOutBtn = document.getElementById("signOutBtn");
-const email = JSON.parse(localStorage.getItem("email"));
 
 let apiKey;
 let genAI;
@@ -77,6 +76,8 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
+  const email = JSON.parse(localStorage.getItem("email"));
+
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
     email: email,
@@ -87,6 +88,8 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
+  const email = JSON.parse(localStorage.getItem("email"));
+
   let q = query(collection(db, "habits"), where("email", "==", email));
   return await getDocs(q);
 }
