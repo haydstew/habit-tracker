@@ -7,6 +7,31 @@ import {
 const registerBtn = document.getElementById("register");
 const signInBtn = document.getElementById("signIn");
 
+const toggleLink = document.getElementById("toggleForm");
+const formTitle = document.getElementById("formTitle");
+const actionButton = document.getElementById("actionButton");
+const toggleLinkText = document.getElementById("toggleLink");
+
+let isRegistering = false;
+
+toggleLink.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  isRegistering = !isRegistering;
+
+  if (isRegistering) {
+    formTitle.textContent = "Register";
+    actionButton.textContent = "Register";
+    toggleLinkText.innerHTML =
+      'Already have an account? <a href="#" id="toggleForm">Sign In here</a>';
+  } else {
+    formTitle.textContent = "Sign In";
+    actionButton.textContent = "Sign In";
+    toggleLinkText.innerHTML =
+      'Don\'t have an account? <a href="#" id="toggleForm">Register here</a>';
+  }
+});
+
 async function registerBiometric() {
   const userEmail = document.getElementById("email").value;
   const password = document.getElementById("password").value;
