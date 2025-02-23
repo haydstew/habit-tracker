@@ -33,36 +33,88 @@ function toggleForm(event) {
 }
 
 async function registerBiometric() {
-  const userEmail = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  // Get values inside the function, when the button is clicked
+  const userEmail = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   if (userEmail === "" || password === "") {
-    alert("Please enter an email and password.");
+    alert("Please enter a valid email address and password.");
     return;
   }
 
   try {
     await createUserWithEmailAndPassword(auth, userEmail, password);
+
+    const publicKey = {
+      challenge: new Uint8Array(32),
+      rp: { name: "Habit Tracker" },
+      user: {
+        id: new TextEncoder().encode(userEmail),
+        name: userEmail,
+        displayName: "User",
+      },
+      pubKeyCredParams: [{ type: "public-key", alg: -7 }],
+      authenticatorSelection: { userVerification: "required" },
+      timeout: 60000,
+      attestation: "direct",
+    };
+
+    const credential = await navigator.credentials.create({ publicKey });
+
+    const idBase64 = btoa(
+      String.fromCharCode(...new Uint8Array(credential.rawId))
+    );
+
+    localStorage.setItem(
+      "biometricKey",
+      JSON.stringify({
+        id: idBase64,
+        email: userEmail,
+      })
+    );
+
     alert(
-      "You have been registered successfully! You can now sign into your account."
+      "You have registered successfuly! You can now sign into your account."
     );
   } catch (error) {
     console.error("Registration failed:", error);
-    alert("An error occurred during registration. Please ry again.");
+    alert("Error during registration. Try again.");
   }
 }
 
 async function authenticateBiometric() {
-  const userEmail = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const userEmail = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   if (userEmail === "" || password === "") {
-    alert("Please enter an email and password.");
+    alert("Please enter a valid email address and password.");
+    return;
+  }
+
+  const storedCredentials = JSON.parse(localStorage.getItem("biometricKey"));
+  if (!storedCredentials) {
+    alert("No biometric data found. Please register first.");
     return;
   }
 
   try {
-    await signInWithEmailAndPassword(auth, userEmail, password);
+    const publicKey = {
+      challenge: new Uint8Array(32),
+      allowCredentials: [
+        {
+          id: base64urlToUint8Array(storedCredentials.id),
+          type: "public-key",
+        },
+      ],
+      userVerification: "required",
+      timeout: 60000,
+    };
+
+    await navigator.credentials.get({ publicKey });
+
+    await signInWithEmailAndPassword(auth, storedCredentials.email, password);
+
+    localStorage.setItem("authenticatedUser", JSON.stringify(true));
     window.location.href = "habits.html";
   } catch (error) {
     console.error("Authentication failed:", error);
