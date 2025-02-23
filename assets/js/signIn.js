@@ -4,9 +4,6 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-const registerBtn = document.getElementById("register");
-const signInBtn = document.getElementById("signIn");
-
 const toggleLink = document.getElementById("toggleForm");
 const formTitle = document.getElementById("formTitle");
 const actionButton = document.getElementById("actionButton");
@@ -20,11 +17,13 @@ toggleLink.addEventListener("click", (event) => {
   isRegistering = !isRegistering;
 
   if (isRegistering) {
+    // Switch to Register form
     formTitle.textContent = "Register";
     actionButton.textContent = "Register";
     toggleLinkText.innerHTML =
       'Already have an account? <a href="#" id="toggleForm">Sign In here</a>';
   } else {
+    // Switch to Sign In form
     formTitle.textContent = "Sign In";
     actionButton.textContent = "Sign In";
     toggleLinkText.innerHTML =
@@ -32,104 +31,51 @@ toggleLink.addEventListener("click", (event) => {
   }
 });
 
+// Handle form submission for Sign In and Register
 async function registerBiometric() {
   const userEmail = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  if (userEmail == "" || password == "") {
-    alert("Email and password are required.");
+  if (userEmail === "" || password === "") {
+    alert("Please enter an email and password.");
     return;
   }
 
   try {
     await createUserWithEmailAndPassword(auth, userEmail, password);
-
-    const publicKey = {
-      challenge: new Uint8Array(32),
-      rp: { name: "Habit Tracker" },
-      user: {
-        id: new TextEncoder().encode(userEmail),
-        name: userEmail,
-        displayName: "User",
-      },
-      pubKeyCredParams: [{ type: "public-key", alg: -7 }],
-      authenticatorSelection: { userVerification: "required" },
-      timeout: 60000,
-      attestation: "direct",
-    };
-
-    const credential = await navigator.credentials.create({ publicKey });
-
-    const idBase64 = btoa(
-      String.fromCharCode(...new Uint8Array(credential.rawId))
+    alert(
+      "You have been registered successfully! You can now sign into your account."
     );
-
-    localStorage.setItem(
-      "biometricKey",
-      JSON.stringify({
-        id: idBase64,
-        email: userEmail,
-      })
-    );
-
-    alert("Biometric registration successful!");
+    // Handle additional biometric registration here if needed
   } catch (error) {
     console.error("Registration failed:", error);
-    alert("Error during registration. Try again.");
+    alert("An error occurred during registration. Please ry again.");
   }
-}
-
-function base64urlToUint8Array(base64url) {
-  const padding = "=".repeat((4 - (base64url.length % 4)) % 4);
-  const base64 = (base64url + padding).replace(/-/g, "+").replace(/_/g, "/");
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
 }
 
 async function authenticateBiometric() {
   const userEmail = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  if (userEmail == "" || password == "") {
-    alert("Email and password are required.");
-    return;
-  }
-
-  const storedCredentials = JSON.parse(localStorage.getItem("biometricKey"));
-  if (!storedCredentials) {
-    alert("No biometric data found. Please register first.");
+  if (userEmail === "" || password === "") {
+    alert("Please enter an email and password.");
     return;
   }
 
   try {
-    const publicKey = {
-      challenge: new Uint8Array(32),
-      allowCredentials: [
-        {
-          id: base64urlToUint8Array(storedCredentials.id),
-          type: "public-key",
-        },
-      ],
-      userVerification: "required",
-      timeout: 60000,
-    };
-
-    await navigator.credentials.get({ publicKey });
-
-    await signInWithEmailAndPassword(auth, storedCredentials.email, password);
-
-    localStorage.setItem("authenticatedUser", JSON.stringify(true));
-    alert("Authentication successful!");
+    await signInWithEmailAndPassword(auth, userEmail, password);
     window.location.href = "habits.html";
   } catch (error) {
     console.error("Authentication failed:", error);
-    alert("Authentication failed. Try again.");
+    alert("Authentication failed. Please try again.");
   }
 }
 
-registerBtn.addEventListener("click", registerBiometric);
-signInBtn.addEventListener("click", authenticateBiometric);
+// Add event listeners based on form mode (sign-in or register)
+actionButton.addEventListener("click", () => {
+  if (isRegistering) {
+    registerBiometric();
+  } else {
+    authenticateBiometric();
+  }
+});

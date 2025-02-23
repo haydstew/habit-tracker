@@ -239,7 +239,7 @@ window.addEventListener("error", function (event) {
 
 signOutBtn.addEventListener("click", async function () {
   const signOutConfirmation = window.confirm(
-    "Are you sure you wish to sign out?"
+    "Are you sure you want to sign out?"
   );
 
   if (signOutConfirmation) {
