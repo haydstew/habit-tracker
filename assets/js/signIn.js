@@ -85,7 +85,7 @@ async function registerBiometric() {
     );
 
     alert(
-      "You have registered successfuly! You can now sign into your account."
+      "You have registered successfully! You can now sign into your account."
     );
   } catch (error) {
     console.error("Registration failed:", error);
