@@ -11,7 +11,7 @@ const registerBtn = document.getElementById("register");
 const signInBtn = document.getElementById("signIn");
 
 async function registerBiometric() {
-  if (!userEmail || !password) {
+  if (userEmail == "" || password == "") {
     alert("Email and password are required.");
     return;
   }
@@ -66,7 +66,7 @@ function base64urlToUint8Array(base64url) {
 }
 
 async function authenticateBiometric() {
-  if (!userEmail || !password) {
+  if (userEmail == "" || password == "") {
     alert("Email and password are required.");
     return;
   }
