@@ -82,9 +82,12 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
+  const userEmail = firebase.auth().currentUser?.email;
+  console.log(userEmail);
+
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
-    email: email,
+    email: userEmail,
     completed: false,
   });
 
@@ -92,7 +95,10 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
-  let q = query(collection(db, "habits"), where("email", "==", email));
+  const userEmail = firebase.auth().currentUser?.email;
+  console.log(userEmail);
+
+  let q = query(collection(db, "habits"), where("email", "==", userEmail));
   return await getDocs(q);
 }
 
