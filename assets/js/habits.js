@@ -83,7 +83,6 @@ async function renderHabits() {
 
 async function addHabitToFirestore(habitText) {
   const userEmail = auth.currentUser?.email;
-  console.log(userEmail);
 
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
@@ -96,7 +95,6 @@ async function addHabitToFirestore(habitText) {
 
 async function getHabitsFromFirestore() {
   const userEmail = auth.currentUser?.email;
-  console.log(userEmail);
 
   let q = query(collection(db, "habits"), where("email", "==", userEmail));
   return await getDocs(q);
