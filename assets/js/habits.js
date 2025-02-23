@@ -10,7 +10,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const habitInput = document.getElementById("habitInput");
@@ -31,26 +31,6 @@ let model;
 
 if (!email) {
   window.location.href = "index.html";
-}
-
-async function verifyBiometric() {
-  return new Promise((resolve) => {
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        alert("You must sign in first.");
-        resolve(false);
-      } else {
-        const authenticatedUser = JSON.parse(
-          localStorage.getItem("authenticatedUser")
-        );
-        if (!authenticatedUser) {
-          alert("Biometric authentication required.");
-          resolve(false);
-        }
-        resolve(true);
-      }
-    });
-  });
 }
 
 async function getApiKey() {
@@ -258,11 +238,15 @@ window.addEventListener("error", function (event) {
 });
 
 signOutBtn.addEventListener("click", async function () {
-  try {
-    await signOut(auth);
-    localStorage.removeItem("authenticatedUser"); // Remove biometric session
-    window.location.href = "index.html";
-  } catch (error) {
-    console.error("Error signing out:", error);
+  const signOutConfirmation = prompt("Are you sure you wish to sign out?");
+
+  if (signOutConfirmation) {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("authenticatedUser");
+      window.location.href = "index.html";
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   }
 });
