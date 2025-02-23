@@ -104,7 +104,7 @@ async function renderHabits() {
 async function addHabitToFirestore(habitText) {
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
-    email: user.email,
+    email: email,
     completed: false,
   });
 
