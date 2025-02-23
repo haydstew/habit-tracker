@@ -10,7 +10,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const habitInput = document.getElementById("habitInput");
@@ -34,19 +34,23 @@ if (!email) {
 }
 
 async function verifyBiometric() {
-  if (!auth.currentUser) {
-    alert("You must sign in first.");
-    return false;
-  }
-
-  const authenticatedUser = JSON.parse(
-    localStorage.getItem("authenticatedUser")
-  );
-  if (!authenticatedUser) {
-    alert("Biometric authentication required.");
-    return false;
-  }
-  return true;
+  return new Promise((resolve) => {
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        alert("You must sign in first.");
+        resolve(false);
+      } else {
+        const authenticatedUser = JSON.parse(
+          localStorage.getItem("authenticatedUser")
+        );
+        if (!authenticatedUser) {
+          alert("Biometric authentication required.");
+          resolve(false);
+        }
+        resolve(true);
+      }
+    });
+  });
 }
 
 async function getApiKey() {
@@ -78,10 +82,11 @@ async function addHabit(habit) {
 }
 
 async function renderHabits() {
-  if (!(await verifyBiometric())) return;
   const habits = await getHabitsFromFirestore();
   habitList.innerHTML = "";
+
   let habitArr = [];
+
   habits.forEach((habit) => {
     habitArr.push({
       id: habit.id,
@@ -89,7 +94,9 @@ async function renderHabits() {
       completed: habit.data().completed,
     });
   });
+
   habitArr.sort((a, b) => new Date(b.timeCreated) - new Date(a.timeCreated));
+
   habitArr.forEach((habit) => {
     createLiHabit(habit.id, habit.text, habit.completed);
   });
@@ -106,32 +113,14 @@ async function addHabitToFirestore(habitText) {
     text: habitText,
     email: user.email,
     completed: false,
-    authenticated: true,
   });
 
   return habit.id;
 }
 
 async function getHabitsFromFirestore() {
-  const user = auth.currentUser;
-  if (!user) {
-    console.error("User is not authenticated.");
-    return [];
-  }
-
-  try {
-    let q = query(collection(db, "habits"), where("email", "==", user.email));
-    let snapshot = await getDocs(q);
-
-    if (snapshot.empty) {
-      console.warn("No habits found for user:", user.email);
-    }
-
-    return snapshot.docs;
-  } catch (error) {
-    console.error("Error fetching habits:", error);
-    return [];
-  }
+  let q = query(collection(db, "todos"), where("email", "==", email));
+  return await getDocs(q);
 }
 
 async function deleteHabit(habitId) {
