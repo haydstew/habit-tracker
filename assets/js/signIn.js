@@ -4,13 +4,13 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-const userEmail = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
 const registerBtn = document.getElementById("register");
 const signInBtn = document.getElementById("signIn");
 
 async function registerBiometric() {
+  const userEmail = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
   if (userEmail == "" || password == "") {
     alert("Email and password are required.");
     return;
@@ -66,6 +66,9 @@ function base64urlToUint8Array(base64url) {
 }
 
 async function authenticateBiometric() {
+  const userEmail = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
   if (userEmail == "" || password == "") {
     alert("Email and password are required.");
     return;
