@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-const toggleLink = document.querySelector("toggle-form-link");
+const toggleLink = document.querySelector(".toggle-form-link");
 const formTitle = document.getElementById("formTitle");
 const actionButton = document.getElementById("actionButton");
 const toggleLinkText = document.getElementById("toggleLink");
