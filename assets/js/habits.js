@@ -29,10 +29,6 @@ let apiKey;
 let genAI;
 let model;
 
-if (!email) {
-  window.location.href = "index.html";
-}
-
 async function getApiKey() {
   let snapshot = await getDoc(doc(db, "apikey", "googlegenai"));
   apiKey = snapshot.data().key;
