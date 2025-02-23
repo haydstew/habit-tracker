@@ -56,6 +56,11 @@ async function addHabit(habit) {
 }
 
 async function renderHabits() {
+  if (!email) {
+    console.error("No user email found. Please sign in.");
+    return;
+  }
+
   const habits = await getHabitsFromFirestore();
   habitList.innerHTML = "";
 
@@ -77,6 +82,11 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
+  if (!email) {
+    console.error("No user email found. Please sign in.");
+    return;
+  }
+
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
     email: email,
@@ -87,6 +97,11 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
+  if (!email) {
+    console.error("No user email found. Please sign in.");
+    return;
+  }
+
   let q = query(collection(db, "habits"), where("email", "==", email));
   return await getDocs(q);
 }
@@ -194,12 +209,15 @@ async function askChatBot(request) {
 window.addEventListener("load", async () => {
   auth.onAuthStateChanged(async (user) => {
     if (user) {
+      // Set email once the user is authenticated
       email = user.email;
       console.log("User is signed in with email:", email);
-      getApiKey();
-      renderHabits();
+      await getApiKey();
+      await renderHabits(); // Ensure habits are rendered after email is set
     } else {
-      console.log(email);
+      // Handle the case where no user is authenticated
+      console.log("No user is signed in.");
+      // Optionally redirect to login or display a message
     }
   });
 });
@@ -208,7 +226,7 @@ aiButton.addEventListener("click", async () => {
   let prompt = aiInput.value.trim().toLowerCase();
   if (prompt) {
     if (!ruleChatBot(prompt)) {
-      askChatBot(prompt);
+      await askChatBot(prompt);
     }
   } else {
     appendMessage("Please enter a prompt.");
@@ -244,11 +262,11 @@ signOutBtn.addEventListener("click", async function () {
   const signOutConfirmation = window.confirm(
     "Are you sure you want to sign out?"
   );
-
   if (signOutConfirmation) {
     await auth.signOut();
+    email = null; // Clear the email upon sign-out
     localStorage.removeItem("authenticatedUser");
     localStorage.removeItem("email");
-    window.location.href = "index.html";
+    window.location.href = "index.html"; // Optionally redirect
   }
 });
