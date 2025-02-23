@@ -23,6 +23,7 @@ let chatHistoryCleared = false;
 
 const signOutBtn = document.getElementById("signOutBtn");
 
+let email;
 let apiKey;
 let genAI;
 let model;
@@ -76,8 +77,6 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
-  const email = auth.currentUser.email;
-
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
     email: email,
@@ -88,8 +87,6 @@ async function addHabitToFirestore(habitText) {
 }
 
 async function getHabitsFromFirestore() {
-  const email = auth.currentUser.email;
-
   let q = query(collection(db, "habits"), where("email", "==", email));
   return await getDocs(q);
 }
@@ -195,8 +192,16 @@ async function askChatBot(request) {
 }
 
 window.addEventListener("load", async () => {
-  getApiKey();
-  renderHabits();
+  auth.onAuthStateChanged(async (user) => {
+    if (user) {
+      email = user.email;
+      console.log("User is signed in with email:", email);
+      getApiKey();
+      renderHabits();
+    } else {
+      console.log(email);
+    }
+  });
 });
 
 aiButton.addEventListener("click", async () => {
@@ -241,6 +246,7 @@ signOutBtn.addEventListener("click", async function () {
   );
 
   if (signOutConfirmation) {
+    await auth.signOut();
     localStorage.removeItem("authenticatedUser");
     localStorage.removeItem("email");
     window.location.href = "index.html";
