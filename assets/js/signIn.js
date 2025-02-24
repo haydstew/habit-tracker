@@ -75,10 +75,12 @@ async function registerBiometric() {
       String.fromCharCode(...new Uint8Array(credential.rawId))
     );
 
+    const user = auth.currentUser;
     localStorage.setItem(
       "biometricKey",
       JSON.stringify({
         id: idBase64,
+        uid: user.uid,
         email: userEmail,
       })
     );
@@ -129,11 +131,14 @@ async function authenticateBiometric() {
     );
     const user = userCredential.user;
 
+    if (user.uid !== storedCredentials.uid) {
+      alert(
+        "Biometric authentication does not match this account. Please sign in manually."
+      );
+      return;
+    }
+
     localStorage.setItem("email", user.email);
-
-    localStorage.setItem("authenticatedUser", JSON.stringify(true));
-    window.location.href = "habits.html";
-
     localStorage.setItem("authenticatedUser", JSON.stringify(true));
     window.location.href = "habits.html";
   } catch (error) {
