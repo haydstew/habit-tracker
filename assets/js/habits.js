@@ -78,12 +78,9 @@ async function renderHabits() {
 
 async function addHabitToFirestore(habitText) {
   if (!email) {
-    console.error("Email is undefined when adding habit!");
     alert("Error: No user email found. Please sign in again.");
     return;
   }
-
-  console.log("Adding habit for email:", email);
 
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
@@ -210,10 +207,8 @@ window.addEventListener("load", async () => {
     }
 
     if (email) {
-      console.log("User is signed in:", email);
       renderHabits();
     } else {
-      console.error("No authenticated user found.");
       window.location.href = "index.html";
     }
   });
@@ -249,10 +244,6 @@ habitInput.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     addHabitBtn.click();
   }
-});
-
-window.addEventListener("error", function (event) {
-  console.error("Error occurred: ", event.message);
 });
 
 signOutBtn.addEventListener("click", async function () {
