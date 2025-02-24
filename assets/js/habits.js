@@ -202,11 +202,17 @@ async function askChatBot(request) {
 window.addEventListener("load", async () => {
   auth.onAuthStateChanged(async (user) => {
     if (user) {
-      email = user.email || localStorage.getItem("email");
-      console.log("User signed in with email:", email);
+      const storedCredentials = JSON.parse(
+        localStorage.getItem("biometricKey")
+      );
 
-      localStorage.setItem("email", email);
+      if (storedCredentials && storedCredentials.uid === user.uid) {
+        email = storedCredentials.email;
+      } else {
+        email = user.email;
+      }
 
+      console.log("Signed in with email:", email);
       await getApiKey();
       await renderHabits();
     } else {
