@@ -281,8 +281,31 @@ ul {
 }
 
 @media (max-width: 768px) {
+  header {
+    padding: 15px;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #signOutBtn {
+    position: relative;
+    top: 0;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    padding: 10px 20px;
+  }
+
+  header h1 {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
   #chatbot-container {
     width: 100%;
+    max-width: 100%;
     position: static;
     bottom: auto;
     right: auto;
