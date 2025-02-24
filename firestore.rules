@@ -2,21 +2,23 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Restrict API key access to authenticated users
+    // Restrict API key access to admin user
     match /apikey/{docId} {
       allow read, write: if request.auth != null
-      && request.auth.token.email == "haydenstewart14@gmail.com";
+        && request.auth.token.email == "haydenstewart14@gmail.com";
     }
 
     // Secure habits collection
     match /habits/{docId} {
       
       // Allow users to create a habit if the request contains their authenticated email
-      allow create: if request.auth != null && request.resource.data.email == request.auth.token.email;
+      allow create: if request.auth != null 
+        && request.resource.data.email == request.auth.token.email;
 
       // Allow users to read, update, and delete only their own habits
-      allow read, update, delete: if request.auth != null 
+      allow read, update, delete: if request.auth != null
         && resource.data.email == request.auth.token.email;
     }
   }
 }
+ 
