@@ -201,6 +201,15 @@ async function askChatBot(request) {
 
 window.addEventListener("load", async () => {
   getApiKey();
+
+  const user = auth.currentUser;
+  if (user) {
+    email = user.email;
+    console.log("User is signed in:", email);
+  } else {
+    console.error("No authenticated user found.");
+  }
+
   renderHabits();
 });
 
