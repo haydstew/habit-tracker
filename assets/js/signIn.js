@@ -87,8 +87,7 @@ async function registerBiometric() {
       "You have registered successfully! You can now sign into your account."
     );
   } catch (error) {
-    console.error("Registration failed:", error);
-    alert("Error during registration. Try again.");
+    alert("Error during registration. Please try again.");
   }
 }
 
@@ -129,7 +128,6 @@ async function authenticateBiometric() {
 
     window.location.href = "habits.html";
   } catch (error) {
-    console.error("Authentication failed:", error);
     alert("Authentication failed. Please try again.");
   }
 }
