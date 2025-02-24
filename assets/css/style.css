@@ -289,23 +289,8 @@ ul {
     position: static;
     bottom: auto;
     right: auto;
-    margin-top: 20px;
+    margin: 20px auto 0;
     padding: 15px;
     box-shadow: none;
-  }
-
-  #chat-history {
-    height: auto;
-    margin-bottom: 15px;
-  }
-
-  #chat-input {
-    width: calc(100% - 100px);
-    margin-right: 10px;
-  }
-
-  #send-btn {
-    width: 100%;
-    margin-top: 10px;
   }
 }
