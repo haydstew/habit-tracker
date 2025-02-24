@@ -200,20 +200,8 @@ async function askChatBot(request) {
 }
 
 window.addEventListener("load", async () => {
-  auth.onAuthStateChanged(async (user) => {
-    if (user) {
-      email = user.email || localStorage.getItem("email");
-      console.log("User signed in with email:", email);
-
-      localStorage.setItem("email", email);
-
-      await getApiKey();
-      await renderHabits();
-    } else {
-      console.log("No user signed in.");
-      window.location.href = "index.html";
-    }
-  });
+  getApiKey();
+  renderHabits();
 });
 
 aiButton.addEventListener("click", async () => {
