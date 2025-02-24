@@ -77,6 +77,14 @@ async function renderHabits() {
 }
 
 async function addHabitToFirestore(habitText) {
+  if (!email) {
+    console.error("Email is undefined when adding habit!");
+    alert("Error: No user email found. Please sign in again.");
+    return;
+  }
+
+  console.log("Adding habit for email:", email);
+
   let habit = await addDoc(collection(db, "habits"), {
     text: habitText,
     email: email,
@@ -192,18 +200,18 @@ async function askChatBot(request) {
 }
 
 window.addEventListener("load", async () => {
-  // Force sign out any existing session to avoid the user from being stuck on the wrong account
-  await auth.signOut();
-
-  // Listen for auth state changes
   auth.onAuthStateChanged(async (user) => {
     if (user) {
-      email = user.email; // Update email with the signed-in user's email
+      email = user.email || localStorage.getItem("email");
       console.log("User signed in with email:", email);
-      getApiKey();
-      renderHabits();
+
+      localStorage.setItem("email", email);
+
+      await getApiKey();
+      await renderHabits();
     } else {
       console.log("No user signed in.");
+      window.location.href = "index.html";
     }
   });
 });

@@ -44,7 +44,6 @@ function base64urlToUint8Array(base64url) {
 }
 
 async function registerBiometric() {
-  // Get values inside the function, when the button is clicked
   const userEmail = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
@@ -123,7 +122,17 @@ async function authenticateBiometric() {
 
     await navigator.credentials.get({ publicKey });
 
-    await signInWithEmailAndPassword(auth, storedCredentials.email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      storedCredentials.email,
+      password
+    );
+    const user = userCredential.user;
+
+    localStorage.setItem("email", user.email);
+
+    localStorage.setItem("authenticatedUser", JSON.stringify(true));
+    window.location.href = "habits.html";
 
     localStorage.setItem("authenticatedUser", JSON.stringify(true));
     window.location.href = "habits.html";
