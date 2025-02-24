@@ -276,6 +276,7 @@ ul {
     margin-right: auto;
     width: auto;
     padding: 10px 20px;
+    display: block;
   }
 
   header h1 {
