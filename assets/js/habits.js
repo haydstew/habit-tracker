@@ -10,6 +10,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const habitInput = document.getElementById("habitInput");
@@ -202,15 +203,21 @@ async function askChatBot(request) {
 window.addEventListener("load", async () => {
   getApiKey();
 
-  const user = auth.currentUser;
-  if (user) {
-    email = user.email;
-    console.log("User is signed in:", email);
-  } else {
-    console.error("No authenticated user found.");
-  }
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      email = user.email;
+    } else {
+      email = localStorage.getItem("email");
+    }
 
-  renderHabits();
+    if (email) {
+      console.log("User is signed in:", email);
+      renderHabits();
+    } else {
+      console.error("No authenticated user found.");
+      window.location.href = "index.html";
+    }
+  });
 });
 
 aiButton.addEventListener("click", async () => {
