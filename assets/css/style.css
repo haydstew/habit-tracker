@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background-color: #2ecc71;
+  background-color: #166437;
   color: white;
   padding: 15px;
   display: flex;
@@ -46,7 +46,7 @@ header h1 {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
-  border: 2px solid #3498db;
+  border: 2px solid #185b8c;
   border-radius: 6px;
   font-family: "Inter", sans-serif;
   font-size: 16px;
@@ -55,14 +55,14 @@ header h1 {
 
 .auth-form input:focus {
   outline: none;
-  border-color: #2980b9;
+  border-color: #144d76;
   box-shadow: 0px 0px 5px rgba(41, 128, 185, 0.5);
 }
 
 .auth-form button {
   width: 100%;
   padding: 12px;
-  background-color: #2ecc71;
+  background-color: #166437;
   color: white;
   border: none;
   border-radius: 8px;
@@ -74,11 +74,11 @@ header h1 {
 }
 
 .auth-form button:hover {
-  background-color: #27ae60;
+  background-color: #12542e;
 }
 
 .auth-form button:active {
-  background-color: #1e8449;
+  background-color: #166437;
 }
 
 #toggleLink {
@@ -86,7 +86,7 @@ header h1 {
 }
 
 #toggleLink a {
-  color: #2ecc71;
+  color: #166437;
   text-decoration: none;
 }
 
@@ -109,14 +109,14 @@ input[type="text"] {
   width: 80%;
   padding: 10px;
   margin: 10px 0;
-  border: 2px solid #3498db;
+  border: 2px solid #185b8c;
   border-radius: 6px;
   font-family: "Inter", sans-serif;
 }
 
 button {
   padding: 10px 15px;
-  background-color: #2ecc71;
+  background-color: #166437;
   color: white;
   border: none;
   border-radius: 8px;
@@ -128,15 +128,15 @@ button {
 }
 
 button:hover {
-  background-color: #27ae60;
+  background-color: #12542e;
 }
 
 button:active {
-  background-color: #1e8449;
+  background-color: #166437;
 }
 
 #signOutBtn {
-  background-color: #ff4b5c;
+  background-color: #b30012;
   position: absolute;
   right: 20px;
   top: 15px;
@@ -145,7 +145,7 @@ button:active {
 }
 
 #signOutBtn:hover {
-  background-color: #d43f4a;
+  background-color: #94000f;
 }
 
 ul {
@@ -183,21 +183,21 @@ ul {
 }
 
 .complete-btn {
-  background-color: #3498db;
+  background-color: #185b8c;
   color: white;
 }
 
 .complete-btn:hover {
-  background-color: #2980b9;
+  background-color: #144d76;
 }
 
 .delete-btn {
-  background-color: #ff4b5c;
+  background-color: #b30012;
   color: white;
 }
 
 .delete-btn:hover {
-  background-color: #d43f4a;
+  background-color: #94000f;
 }
 
 .completed {
@@ -239,19 +239,19 @@ ul {
   padding: 5px;
   margin-right: 5px;
   border-radius: 6px;
-  border: 2px solid #3498db;
+  border: 2px solid #185b8c;
 }
 
 #send-btn {
   padding: 5px 10px;
   cursor: pointer;
-  background-color: #2ecc71;
+  background-color: #166437;
   border-radius: 6px;
   font-family: "Poppins", sans-serif;
 }
 
 #send-btn:hover {
-  background-color: #27ae60;
+  background-color: #12542e;
 }
 
 @media (max-width: 480px) {
