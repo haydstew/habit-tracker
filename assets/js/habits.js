@@ -202,7 +202,7 @@ async function askChatBot(request) {
 window.addEventListener("load", async () => {
   getApiKey();
 
-  auth.onAuthStateChanged(auth, (user) => {
+  auth.onAuthStateChanged((user) => {
     if (user) {
       email = user.email;
     } else {
