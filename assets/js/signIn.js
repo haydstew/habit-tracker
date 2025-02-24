@@ -124,7 +124,9 @@ async function authenticateBiometric() {
 
     await signInWithEmailAndPassword(auth, storedCredentials.email, password);
 
+    localStorage.setItem("email", storedCredentials.email);
     localStorage.setItem("authenticatedUser", JSON.stringify(true));
+
     window.location.href = "habits.html";
   } catch (error) {
     console.error("Authentication failed:", error);
