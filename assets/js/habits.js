@@ -10,7 +10,6 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const habitInput = document.getElementById("habitInput");
@@ -203,7 +202,7 @@ async function askChatBot(request) {
 window.addEventListener("load", async () => {
   getApiKey();
 
-  onAuthStateChanged(auth, (user) => {
+  auth.onAuthStateChanged(auth, (user) => {
     if (user) {
       email = user.email;
     } else {
